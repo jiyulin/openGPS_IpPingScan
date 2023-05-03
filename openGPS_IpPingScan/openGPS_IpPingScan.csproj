@@ -7,7 +7,7 @@
     <ProjectGuid>{EADA5859-3345-4489-B7BD-72B4521F1DD8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>openGPS_IpPingScan</RootNamespace>
-    <AssemblyName>IP扫描工具</AssemblyName>
+    <AssemblyName>IP Ping扫描工具</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
