@@ -1,5 +1,5 @@
 ﻿
-namespace openGPS_IpScan
+namespace openGPS_IpPingScan
 {
     partial class MainForm
     {
