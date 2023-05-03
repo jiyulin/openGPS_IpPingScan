@@ -45,8 +45,8 @@ namespace openGPS_IpScan
 
         private void btnScanIp_Click(object sender, EventArgs e)
         {
-            string ipFromStr = this.txtIpFrom.Text;
-            string ipToStr = this.txtIpTo.Text;
+            string ipFromStr = this.txtIpFrom.Text.Trim();
+            string ipToStr = this.txtIpTo.Text.Trim();
             string timeoutMsStr = this.txtTimeoutMs.Text.Trim();
             IPAddress ipa;
             if (!IPAddress.TryParse(ipFromStr, out ipa))
@@ -66,7 +66,7 @@ namespace openGPS_IpScan
                 return;
             }
             this.btnStop.Enabled = true;
-            this.dataGridView1.Rows.Clear();
+            this.dgvResult.Rows.Clear();
 
             long ipFrom = openGPS_Common.IpHelper.ConvertToNumber(ipFromStr);
             long ipTo = openGPS_Common.IpHelper.ConvertToNumber(this.txtIpTo.Text);
@@ -76,9 +76,9 @@ namespace openGPS_IpScan
                 Dictionary<string, string> dic = new Dictionary<string, string>() {
                     { "IP", openGPS_Common.IpHelper.ConvertToString(i) },
                 };
-                ShowMsgInTable(this.dataGridView1, i, "...", dic, Color.White);
+                ShowMsgInTable(this.dgvResult, i, "...", dic, Color.White);
             }
-            this.dataGridView1.Columns["IP"].DisplayIndex = 0;
+            this.dgvResult.Columns["IP"].DisplayIndex = 0;
 
 
             #region 并行计算
@@ -113,11 +113,11 @@ namespace openGPS_IpScan
                               Dictionary<string, string> dic = new Dictionary<string, string>() {
                                 { "IP",ip },
                               };
-                              ShowMsgInTable(this.dataGridView1, x, success ? reply.RoundtripTime.ToString() : "失败", dic, success ? Color.Green : Color.Red);
+                              ShowMsgInTable(this.dgvResult, x, success ? reply.RoundtripTime.ToString() : "失败", dic, success ? Color.Green : Color.Red);
                           }
                           catch (Exception ex)
                           {
-                              ShowMsgInTable(this.dataGridView1, x, ex.Message, null, Color.Red);
+                              ShowMsgInTable(this.dgvResult, x, ex.Message, null, Color.Red);
                           }
                       });
                 }
@@ -283,9 +283,9 @@ namespace openGPS_IpScan
 
         private void btnOutLog_Click(object sender, EventArgs e)
         {
-            lock (this.dataGridView1)
+            lock (this.dgvResult)
             {
-                foreach (DataGridViewRow row in this.dataGridView1.Rows)
+                foreach (DataGridViewRow row in this.dgvResult.Rows)
                 {
                     string log = "";
                     for (int i = 0; i < row.Cells.Count; i++)
