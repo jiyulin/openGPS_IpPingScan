@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EADA5859-3345-4489-B7BD-72B4521F1DD8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>openGPS_IpScan</RootNamespace>
+    <RootNamespace>openGPS_IpPingScan</RootNamespace>
     <AssemblyName>IP扫描工具</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -71,6 +71,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
