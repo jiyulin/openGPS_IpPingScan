@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("openGPS_IpScan")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("IP ping扫描工具")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("www.opengps.cn")]
 [assembly: AssemblyProduct("openGPS_IpScan")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
