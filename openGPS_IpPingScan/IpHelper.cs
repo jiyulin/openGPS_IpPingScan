@@ -52,19 +52,19 @@ namespace openGPS_Common
                 if (!IPAddress.TryParse(ip, out ipa))
                     return false;
 
-                Ping p = new Ping();
-                PingReply reply = p.Send(ip, timeoutMs);
-                if (reply.Status == IPStatus.Success)
-                    return true;
-                else
-                    return false;
+                using (Ping p = new Ping())
+                {
+                    PingReply reply = p.Send(ip, timeoutMs);
+                    if (reply.Status == IPStatus.Success)
+                        return true;
+                    else
+                        return false;
+                }
             }
             catch (Exception)
             {
                 return false;
             }
-
-
         }
 
         public static bool CheckPort(string ip, int port, out string errorMsg, int timeoutMs = 1000)
@@ -73,28 +73,30 @@ namespace openGPS_Common
             bool success = false;
             try
             {
-                Socket s = new Socket(SocketType.Stream, ProtocolType.Tcp);
-                s.ReceiveBufferSize = s.SendBufferSize = 1;
-                s.NoDelay = true;
-                IPAddress ipa = IPAddress.Parse(ip);
-                IAsyncResult connResult = s.BeginConnect(ipa, port, null, null);
-                connResult.AsyncWaitHandle.WaitOne(timeoutMs, true);  //等待2秒
+                using (Socket s = new Socket(SocketType.Stream, ProtocolType.Tcp))
+                {
+                    s.ReceiveBufferSize = s.SendBufferSize = 1;
+                    s.NoDelay = true;
+                    IPAddress ipa = IPAddress.Parse(ip);
+                    IAsyncResult connResult = s.BeginConnect(ipa, port, null, null);
+                    connResult.AsyncWaitHandle.WaitOne(timeoutMs, true);  //等待2秒
 
-                if (!connResult.IsCompleted)
-                {
-                    success = false;
-                    errorMsg = "请求超时";
-                }
-                else
-                {
-                    success = s.Connected;
-                    if (!success)
+                    if (!connResult.IsCompleted)
                     {
-                        errorMsg = "拒绝连接";
+                        success = false;
+                        errorMsg = "请求超时";
                     }
                     else
                     {
-                        errorMsg = "成功";
+                        success = s.Connected;
+                        if (!success)
+                        {
+                            errorMsg = "拒绝连接";
+                        }
+                        else
+                        {
+                            errorMsg = "成功";
+                        }
                     }
                 }
             }
