@@ -1,9 +1,4 @@
-/openGPS_IpScan/bin
-/openGPS_IpScan/obj
-/openGPS_IpScan/.vs
-/.vs/openGPS_IpScan
-/openGPS_IpPingScan/bin/Debug
-/openGPS_IpPingScan/obj/Debug
-/.vs/openGPS_IpPingScan/v16
-/openGPS_IpPingScan/.vs/openGPS_IpScan/v16
-/.vs/openGPS_IpPingScan
+/openGPS_IpPingScan/bin
+/openGPS_IpPingScan/obj
+/openGPS_IpPingScan/.vs
+/.vs
